@@ -56,7 +56,7 @@ const Header = (props) => {
             method: "POST",
             headers: {
                 Credentials: "include",
-                ContentType: "application/json",
+                'Content-Type': "application/json",
                 Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
