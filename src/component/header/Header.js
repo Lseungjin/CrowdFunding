@@ -61,7 +61,7 @@ const Header = (props) => {
             },
             body: JSON.stringify({
                 "nickname": nickname,
-                "metamaskAddress": address
+                "metamaskAddress": metamaskAddress
             })
         })
         .then((res) => {
@@ -130,7 +130,7 @@ const Header = (props) => {
                             <input
                                 type="text"
                                 value={metamaskAddress}
-                                onChange={(e) => setMetaMaskAddress(e.target.value)}
+                                onChange={(e) => setMetamaskAddress(e.target.value)}
                                 placeholder="메타마스크 주소"></input>
                         </div>
                         <button
