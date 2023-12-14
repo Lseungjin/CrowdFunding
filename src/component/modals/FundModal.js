@@ -21,7 +21,7 @@ const FundModal = (props) => {
                 <CancelIcon className="close-icon" onClick={() => setOpen(false)} />
                 <h4 className="pr-title">프로젝트 제목 : {title}</h4>
                 <p className="pr-desc">프로젝트 내용 : {desc}</p>
-                <p className="fund-modal">당신의 펀딩 가능액: <span>{canFund} ETH</span></p>
+                <p className="fund-modal">남은 모금액: <span>{canFund} ETH</span></p>
 
                 <input placeholder="수량을 입력해주세요"
                     className="pr-fund"

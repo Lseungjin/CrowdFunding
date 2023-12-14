@@ -32,7 +32,7 @@
 
 .header .image,
 .header .text{
-    flex-basis: 50%;
+    flex-basis: 70%;
 }
 
 .header .text{
@@ -41,14 +41,15 @@
 }
 
 .header .text h1{
-    font-size: 52px;
-    color: #6b6b6b;
+    font-size: 62px;
+    color: #000000;
     margin-bottom: 0;
 }
 
 .header .text p{
-    color: grey;
-    margin-bottom: 60px;
+    font-size: 22px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 40px;
 }
 
 .header .text .start-btn,

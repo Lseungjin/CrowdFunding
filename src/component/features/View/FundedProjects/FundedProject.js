@@ -92,12 +92,12 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
 
 
             <p id="desc">{decodeURI(project.projectDesc)}</p>
-            <p id="deadline">Will be closed on: {getDate(project.deadline)}</p>
-            <p id="raised">Amount to be raised:
+            <p id="deadline">프로젝트 마감일: {getDate(project.deadline)}</p>
+            <p id="raised">목표 금액:
                 <span><img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
                     {ethValue(project.goalAmount)}</span></p>
             <p className="your-funds">
-                Your funds: <span><img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
+                나의 모금액: <span><img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
 
                 </span>
                 {ethValue(String(funding))}
@@ -112,7 +112,7 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
                 </div>
                 <div className="blank"
                     style={{ width: `${fundedPercentage(Number(project.goalAmount) - Number(project.currentAmount))}%` }}>
-                    <p className="lbl">Remaining: {getDiff(project.goalAmount, project.currentAmount)} ETH</p>
+                    <p className="lbl">남은 금액: {getDiff(project.goalAmount, project.currentAmount)} ETH</p>
                 </div>
             </div>
             <div className={`fund-options ${funding !== 0 ? 'flex' : ''}`}>
@@ -126,8 +126,8 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
                     setAmount={setAmount}
                     amount={amount}
                     fund={fundProject}
-                    desc={decodeURI(project.projectDesc)}
                     title={decodeURI(project.projectTitle)}
+                    desc={decodeURI(project.projectDesc)}
                     targetAmt={project.goalAmount}
                     curAmt={project.currentAmount} />}
 
