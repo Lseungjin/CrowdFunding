@@ -12,15 +12,15 @@ const Header = (props) => {
         setNickname(event.target.value);
     };
 
-     // 닉네임 유효성 확인
+    // 닉네임 유효성 확인
     async function checkName() {
         // 액세스 토큰 가져오기
         const localStorage = window.localStorage;
         const token = localStorage.getItem("accessToken");
-    
+
         // 닉네임 중복 확인 API
         const nameCheckAPI = `https://funsns.shop:8000/user-service/metamask/${nickname}`;
-    
+
         // fetch API
         let res = await fetch(nameCheckAPI, {
             method: "GET",
@@ -30,24 +30,24 @@ const Header = (props) => {
                 Authorization: `Bearer ${token}`,
             },
         })
-        .then((res) => {
-            if (res.status === 200) {
-                alert("유효한 닉네임입니다.");
-                setValidName(true);
-            } else {
-                alert("존재하지 않는 닉네임입니다.");
-                setValidName(false);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            throw new Error("서버 요청 실패!");
-        });
+            .then((res) => {
+                if (res.status === 200) {
+                    alert("유효한 닉네임입니다.");
+                    setValidName(true);
+                } else {
+                    alert("존재하지 않는 닉네임입니다.");
+                    setValidName(false);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                throw new Error("서버 요청 실패!");
+            });
     }
 
-     // 메타마스크 주소 등록
+    // 메타마스크 주소 등록
     async function registerMetamaskAddress() {
-        const localStorage= window.localStorage;
+        const localStorage = window.localStorage;
         const token = localStorage.getItem("accessToken");
 
         const registerAPI = `https://funsns.shop:8000/user-service/metamask/address`;
@@ -64,17 +64,17 @@ const Header = (props) => {
                 "metamaskAddress": metamaskAddress
             })
         })
-        .then((res) => {
-            if (res.status === 200) {
-                alert("메타마스크 주소가 등록되었습니다.");
-            } else {
-                alert("메타마스크 주소 등록에 실패하였습니다.");
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            throw new Error("서버 요청 실패!");
-        });
+            .then((res) => {
+                if (res.status === 200) {
+                    alert("메타마스크 주소가 등록되었습니다.");
+                } else {
+                    alert("메타마스크 주소 등록에 실패하였습니다.");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                throw new Error("서버 요청 실패!");
+            });
     }
     return (
         <div className="header-container">
@@ -112,33 +112,38 @@ const Header = (props) => {
             {showModal && (
                 <div className="modal">
                     <div className="modal-content">
-                        <h2>입력 폼</h2>
+                        <h2>정보 입력하기</h2>
                         <span className="close-button" onClick={() => setShowModal(false)}>×</span>
-                        <div className="ip-fields">
+
+                        <div className="input-row">
                             <input
                                 type="text"
                                 value={nickname}
                                 onChange={handleNicknameChange}
                                 placeholder="닉네임"></input>
+                            &nbsp; &nbsp;
+                            <button
+                                onClick={checkName}
+                                className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded">
+                                닉네임 유효성 확인 버튼
+                            </button>
                         </div>
-                        <button
-                            onClick={checkName}
-                            className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded">
-                            닉네임 유효성 확인 버튼
-                        </button>
-                        <div className="ip-fields">
+
+                        <div className="input-row">
                             <input
                                 type="text"
                                 value={metamaskAddress}
                                 onChange={(e) => setMetamaskAddress(e.target.value)}
                                 placeholder="메타마스크 주소"></input>
+                            &nbsp; &nbsp;
+                            <button
+                                onClick={registerMetamaskAddress}
+                                className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded">
+                                메타마스크 주소 등록
+                            </button>
                         </div>
-                        <button
-                            onClick={registerMetamaskAddress}
-                            className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded">
-                            메타마스크 주소 등록
-                        </button>
                     </div>
+
                 </div>
             )}
         </div>

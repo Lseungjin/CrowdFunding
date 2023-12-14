@@ -70,11 +70,20 @@
 }
 
 .modal-content {
+    /* 입력폼 전체 크기 조절 */
+    width: 60%;
+    height: 60%;
+    /* 굵은 검은색 테두리 추가 */
+    border: 3px solid black;
+    /* 기타 스타일 유지 */
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    display: flex; /* 입력 칸과 버튼을 한 줄에 배치 */
+    flex-direction: column; /* 세로 방향 배치 */
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center; /* 가운데 정렬 */
+    position: relative;
 }
 
 .close-button {
@@ -82,6 +91,9 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    position: absolute; /* x버튼을 절대위치로 설정 */
+    top: 10px; /* 상단에서부터의 거리 지정 */
+    right: 10px; /* 우측에서부터의 거리 지정 */
 }
 
 .close-button:hover,
@@ -93,4 +105,45 @@
 .clickable-text {
     text-decoration: underline;
     cursor: pointer;
+}
+.input-row {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 10px;
+    align-items: center;
+    width: 90%; /* 컨테이너의 너비를 조절 */
+    margin: auto; /* 컨테이너를 중앙에 위치시키기 */
+}
+
+.input-row input,
+.input-row button {
+    width: 45%; /* 입력 칸과 버튼의 크기를 동일하게 조절 */
+}
+
+button {
+    /* 기타 스타일 유지 */
+    background-color: #3399ff;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width : 200px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #1885f2; 
+}
+
+/* 모든 입력 칸에 검은색 테두리 추가 */
+input {
+    border: 1px solid #ccc !important;
+    padding: 10px;
+    width : 200px;
+    border-radius: 10px;
 }
