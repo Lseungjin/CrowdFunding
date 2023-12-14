@@ -116,8 +116,8 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
                 </div>
             </div>
             <div className={`fund-options ${funding !== 0 ? 'flex' : ''}`}>
-                <button onClick={() => setOpen(true)}>Fund</button>
-                {funding !== 0 && <button onClick={() => setROpen(true)}>Refund</button>}
+                <button onClick={() => setOpen(true)}>펀딩</button>
+                {funding !== 0 && <button onClick={() => setROpen(true)}>환불</button>}
             </div>
 
             {open &&
@@ -126,8 +126,8 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
                     setAmount={setAmount}
                     amount={amount}
                     fund={fundProject}
-                    desc={project.projectDesc}
-                    title={project.projectTitle}
+                    desc={decodeURI(project.projectDesc)}
+                    title={decodeURI(project.projectTitle)}
                     targetAmt={project.goalAmount}
                     curAmt={project.currentAmount} />}
 

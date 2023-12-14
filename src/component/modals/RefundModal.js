@@ -23,8 +23,8 @@ const RefundModal = (props) => {
             <div className="modal-box">
                 <h2>프로젝트 후원 환불</h2>
                 <CancelIcon className="close-icon" onClick={() => setROpen(false)} />
-                <h4 className="pr-title">프로젝트 제목 : {project.projectTitle}</h4>
-                <p className="pr-desc">프로젝트 내용 : {project.projectDesc}</p>
+                <h4 className="pr-title">프로젝트 제목 : {decodeURI(project.projectDesc)}</h4>
+                <p className="pr-desc">프로젝트 내용 : {decodeURI(project.projectTitle)}</p>
 
                 {isExpired() ? (
                     <button className="pr-fund-btn" onClick={refund}>Refund</button>

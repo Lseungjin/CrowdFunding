@@ -64,7 +64,7 @@ const FundedProjects = () => {
             <div className="tri-div-view">
                 <div className="mid-container">
                     <Header
-                        title={`펀딩 중인 프로젝트(${allProjects.length})`}
+                        title={`참여한 프로젝트(${allProjects.length})`}
                         query={query}
                         setQuery={setQuery}
                         projects={projects}
