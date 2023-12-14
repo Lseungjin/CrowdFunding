@@ -98,8 +98,8 @@ const Project = ({ project, accounts, web3, pIndex }) => {
                     setAmount={setAmount}
                     amount={amount}
                     fund={fundProject}
-                    desc={project.projectDesc}
-                    title={project.projectTitle}
+                    desc={decodeURI(project.projectDesc)}
+                    title={decodeURI(project.projectTitle)}
                     targetAmt={project.goalAmount}
                     curAmt={project.currentAmount} />}
 
