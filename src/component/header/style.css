@@ -90,3 +90,7 @@
     text-decoration: none;
     cursor: pointer;
 }
+.clickable-text {
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -24,10 +24,11 @@ const Page = () => {
 
             <div className="header">
                 <div className="text">
-                    <h1>Crowdfunding Applictaion</h1>
+                    <h1>Crowdfunding Application</h1>
                     <p>This is an SNS-type crowdfunding project by the ‘박박이’ team. 
                     This service solves the problems of existing crowdfunding..</p>
                     <Link to="/all" className="start-btn">시작하기</Link>
+                    <a href="https://funs.vercel.app/" className="start-btn">돌아가기</a> {/* "돌아가기" 버튼 추가 */}
                 </div>
                 <div className="image">
                     <img src={IMAGE} alt="" />

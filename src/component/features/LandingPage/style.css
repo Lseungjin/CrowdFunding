@@ -51,16 +51,18 @@
     margin-bottom: 60px;
 }
 
-.header .image img{
-    width: 660px;
-}
-
-.start-btn{
+.header .text .start-btn,
+.header .text .back-btn{ /* .back-btn 추가 */
     cursor: pointer;
     padding: 12px;
     border-radius: 4px;
     color: #fff;
     background-color: #5900ff;
+    margin-right: 10px; /* 버튼 사이의 간격을 조정 */
+}
+
+.header .image img{
+    width: 660px;
 }
 
 .login-btn{

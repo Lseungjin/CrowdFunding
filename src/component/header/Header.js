@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import "./style.css"
+import MetamaskPNG from "../../assets/metamask.png"
 
 const Header = (props) => {
     const [showModal, setShowModal] = useState(false);
@@ -15,17 +16,23 @@ const Header = (props) => {
                     value={props.query}
                     onChange={(e) => props.setQuery(e.target.value)}
                     placeholder="Search Project"></input>
-                <img 
-                    src="path-to-your-image.jpg" 
-                    alt="Open form" 
-                    onClick={() => setShowModal(true)} 
-                />
+                <div
+                    style={{ display: 'flex', alignItems: 'center' }}
+                    onClick={() => setShowModal(true)}
+                >
+                    <img
+                        src={MetamaskPNG}
+                        width="30" height="30"
+                        alt="메타마스크 등록하기 -> 메타마스크 등록시 포인트 지급!"
+                    />
+                    <p className="clickable-text">{"메타마스크 등록하기 -> 메타마스크 등록시 포인트 지급!"}</p>
+                </div>
             </div>
             <div className="tools">
                 <div className="sorting">
                     <p>정렬:</p>
-                    <select value={0} 
-                    onChange={(e) => props.setSortingIdx(Number(e.target.value))}>
+                    <select value={0}
+                        onChange={(e) => props.setSortingIdx(Number(e.target.value))}>
                         <option value={0}>None</option>
                         <option value={1}>프로젝트 제목</option>
                         <option value={2}>모금 금액</option>
