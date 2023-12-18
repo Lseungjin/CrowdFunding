@@ -3,17 +3,15 @@ import "./style.css";
 import { AppContext } from '../../utils/AppContext';
 import { Link } from 'react-router-dom';
 
-
-
 const CreateProject = (props) => {
-
     const { web3, accounts, contract, crowdfundProject } = useContext(AppContext)
 
     const [project, setProject] = useState({
         title: '',
         description: '',
         duration: '',
-        amountGoal: ''
+        amountGoal: '',
+        image: null
     });
 
     const create = async (e) => {
@@ -21,28 +19,40 @@ const CreateProject = (props) => {
         if (project.title !== '' &&
             project.description !== '' &&
             project.duration &&
-            project.amountGoal) {
+            project.amountGoal &&
+            project.image) {
 
-
-                contract.methods.startProject(
-                    encodeURI(project.title),
-                    encodeURI(project.description),
-                    project.duration,
-                    web3.utils.toWei(project.amountGoal, 'ether')
-                ).send({ from: accounts[0] })
-                .then(res => {
-                    const projectInfo = res.events.ProjectStarted.returnValues;
-                    projectInfo.title = decodeURI(projectInfo.title);
-                    projectInfo.description = decodeURI(projectInfo.description);
-                    projectInfo.isLoading = false;
-                    projectInfo.currentState = 0;
-                    projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
-                    window.location.href = "/projects/my"
-                })
+            contract.methods.startProject(
+                encodeURI(project.title),
+                encodeURI(project.description),
+                project.duration,
+                web3.utils.toWei(project.amountGoal, 'ether')
+            ).send({ from: accounts[0] })
+            .then(res => {
+                const projectInfo = res.events.ProjectStarted.returnValues;
+                projectInfo.title = decodeURI(projectInfo.title);
+                projectInfo.description = decodeURI(projectInfo.description);
+                projectInfo.isLoading = false;
+                projectInfo.currentState = 0;
+                projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
+                localStorage.setItem(projectInfo.title, project.image);
+                window.location.href = "/projects/my"
+            })
         }
         else {
             alert("Fill all the fields.")
         }
+    }
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        
+        reader.onloadend = () => {
+            setProject({ ...project, image: reader.result });
+        };
+
+        reader.readAsDataURL(file);
     }
 
     return (
@@ -53,6 +63,8 @@ const CreateProject = (props) => {
                     <form onSubmit={create}>
                         <h2 className="heading">프로젝트 생성하기</h2>
                         <div className="ip-fields">
+                            <input type="file" accept="image/*" onChange={handleImageUpload} />
+
                             <input placeholder="프로젝트 제목(Project Title)"
                                 value={project.title}
                                 onChange={(e) => setProject({ ...project, title: e.target.value })} />

@@ -10,6 +10,8 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
     const [funding, setFunding] = useState(0)
     const [open, setOpen] = useState(false)
     const [rOpen, setROpen] = useState(false)
+    const projectImage = localStorage.getItem(decodeURI(project.title));
+    console.log(projectImage);
 
     const getDate = (date) => {
         let d = new Date(date * 1000)
@@ -81,16 +83,14 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
 
     return (
         <div className="project-card">
-            <div className="top-tile">
             <h3>{decodeURI(project.projectTitle)}</h3>
+            {projectImage && <img src={projectImage} alt={decodeURI(project.title)} />}
+            <div className="top-tile">
                 <div className="funded">
                     <img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
-
                     <p>{ethValue(project.currentAmount)}</p>
                 </div>
             </div>
-
-
             <p id="desc">{decodeURI(project.projectDesc)}</p>
             <p id="deadline">프로젝트 마감일: {getDate(project.deadline)}</p>
             <p id="raised">목표 금액:
@@ -98,7 +98,6 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
                     {ethValue(project.goalAmount)}</span></p>
             <p className="your-funds">
                 나의 모금액: <span><img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
-
                 </span>
                 {ethValue(String(funding))}
             </p>
@@ -129,7 +128,8 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
                     title={decodeURI(project.projectTitle)}
                     desc={decodeURI(project.projectDesc)}
                     targetAmt={project.goalAmount}
-                    curAmt={project.currentAmount} />}
+                    curAmt={project.currentAmount}
+                    project={project} />}
 
             {rOpen && (
                 <RefundModal
@@ -143,3 +143,4 @@ const FundedProject = ({ project, accounts, web3, pIndex }) => {
 }
 
 export default FundedProject
+

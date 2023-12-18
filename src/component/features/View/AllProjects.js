@@ -38,7 +38,7 @@ const AllProjects = () => {
         return p.projectTitle.toLowerCase().includes(query.toLowerCase())
             && p.projectStarter !== accounts[0]
     })
-
+    
     return (
         <div className="main-container">
             <div className="tri-div-view">

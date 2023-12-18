@@ -4,7 +4,6 @@ import CrowdFunding from './build/contracts/CrowdFunding.json';
 
 import Project from "./build/contracts/Project.json"
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-
 import "./App.css";
 import { AppContext } from "./component/utils/AppContext";
 import CreateProject from "./component/features/Create/CreateProject";

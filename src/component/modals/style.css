@@ -1,0 +1,37 @@
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-box {
+    position: relative; /* 추가 */
+    width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+
+.pr-title {
+    font-size: 24px; /* 제목 글자 크기 조정 */
+    color: #000; /* 제목 색상 */
+    font-weight: bold; /* 제목 글씨체 두껍게 */
+}
+
+.pr-desc {
+    font-size: 18px; /* 설명 글자 크기 조정 */
+    color: #777; /* 설명 색상 */
+}
+.close-icon {
+    position: absolute;
+    top: 10px; /* 상단과의 거리 조정 */
+    right: 10px; /* 우측과의 거리 조정 */
+    cursor: pointer;
+}

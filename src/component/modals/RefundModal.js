@@ -18,17 +18,25 @@ const RefundModal = (props) => {
         return Math.floor(dif)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        refund();
+    }
+    const projectImage = localStorage.getItem(decodeURI(project.title));
     return (
         <div className="modal-container">
             <div className="modal-box">
                 <h2>프로젝트 후원 환불</h2>
                 <CancelIcon className="close-icon" onClick={() => setROpen(false)} />
                 <h4 className="pr-title">프로젝트 제목 : {decodeURI(project.projectTitle)}</h4>
-                <p className="pr-desc">프로젝트 내용 : {decodeURI(project.projectDesc)}</p>
+                {projectImage && <img src={projectImage} alt={decodeURI(project.title)} style={{ width: '200px', height: 'auto' }} />}
 
-                {isExpired() ? (
-                    <button className="pr-fund-btn" onClick={refund}>Refund</button>
-                ) : <p className="exp-msg">이 프로젝트가{getRange()} 일 이내에 완료로 표시되지 않으면 환불하실 수 있습니다. </p>}
+                <p className="pr-desc">프로젝트 내용 : {decodeURI(project.projectDesc)}</p>
+                <form onSubmit={handleSubmit}>
+                    {isExpired() ? (
+                        <button className="pr-fund-btn" type="submit">Refund</button>
+                    ) : <p className="exp-msg">이 프로젝트가 {getRange()} 일 이내에 완료로 표시되지 않으면 환불하실 수 있습니다. </p>}
+                </form>
             </div>
         </div>
     )

@@ -10,7 +10,9 @@ const Project = ({ project, accounts, web3, pIndex }) => {
     const [funding, setFunding] = useState(0)
     const [open, setOpen] = useState(false)
     const [rOpen, setROpen] = useState(false)
-
+    const projectImage = localStorage.getItem((project.title));
+    
+    console.log(projectImage);
     const getDate = (date) => {
         let d = new Date(date * 1000)
         return `${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -69,21 +71,18 @@ const Project = ({ project, accounts, web3, pIndex }) => {
 
     return (
         <div className="project-card">
-            <div className="top-tile">
             <h3>{decodeURI(project.projectTitle)}</h3>
+            {projectImage && <img src={projectImage} alt={decodeURI(project.title)} />}
+            <div className="top-tile">
                 <div className="funded">
-                <img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
-
+                    <img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
                     <p>{ethValue(project.currentAmount)}</p>
                 </div>
             </div>
-
-
             <p id="desc">{decodeURI(project.projectDesc)}</p>
             <p id="deadline">종료일(일/월/년): {getDate(project.deadline)}</p>
             <p id="raised">모금액:
                 <span><img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
-
                     {ethValue(project.goalAmount)}
                 </span>
             </p>
@@ -101,7 +100,8 @@ const Project = ({ project, accounts, web3, pIndex }) => {
                     desc={decodeURI(project.projectDesc)}
                     title={decodeURI(project.projectTitle)}
                     targetAmt={project.goalAmount}
-                    curAmt={project.currentAmount} />}
+                    curAmt={project.currentAmount}
+                    project={project} />}
 
             {rOpen && (
                 <RefundModal
@@ -115,3 +115,4 @@ const Project = ({ project, accounts, web3, pIndex }) => {
 }
 
 export default Project
+

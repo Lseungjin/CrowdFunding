@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { AppContext } from '../../../utils/AppContext'
+import React, { useState, useEffect } from 'react'
 
-const MyProject = ({ project, accounts }) => {
-
-    const { web3 } = useContext(AppContext)
-
+const MyProject = ({ project, accounts, web3, pIndex }) => {
+    const projectImage = localStorage.getItem(decodeURI(project.projectTitle));
     const [funding, setFunding] = useState(0)
-
+    console.log(projectImage);
     const getDate = (date) => {
         let d = new Date(date * 1000)
         return `${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -46,19 +43,17 @@ const MyProject = ({ project, accounts }) => {
 
     return (
         <div className="project-card">
-            <div className="top-tile">
             <h3>{decodeURI(project.projectTitle)}</h3>
+            {projectImage && <img src={projectImage} alt={decodeURI(project.projectTitle)} />}
+            <div className="top-tile">
                 <div className="funded">
                     <img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
-
                     <p>{ethValue(project.currentAmount)}</p>
                 </div>
             </div>
-
-
             <p id="desc">{decodeURI(project.projectDesc)}</p>
-            <p id="deadline">Will be closed on: {getDate(project.deadline)}</p>
-            <p id="raised">Amount to be raised:
+            <p id="deadline">종료일(일/월/년): {getDate(project.deadline)}</p>
+            <p id="raised">모금액:
                 <span><img className="ethIcon" src="https://img.icons8.com/fluent/48/000000/ethereum.png" alt="Ethereum Icon" />
                     {ethValue(project.goalAmount)}</span></p>
             <div className="funding-bar" style={{ marginBottom: 0 }}>
@@ -76,3 +71,4 @@ const MyProject = ({ project, accounts }) => {
 }
 
 export default MyProject
+
