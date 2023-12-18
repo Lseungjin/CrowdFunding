@@ -85,7 +85,7 @@ const App = () => {
             const projectInfo = projectData;
             projectInfo.isLoading = false;
             projectInfo.contract = projectInst;
-            if (!isExpired(projectInfo) && !isComplete(projectInfo)) {
+            if (!isExpired(projectInfo)) {
               setProjects(p => [...p, projectInfo])
             }
           })
